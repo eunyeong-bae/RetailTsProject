@@ -11,15 +11,18 @@ const productLists = [
 const CommonFlatList = () => {
     const renderItems = ( data: any) => {
         return (
-            <View key={ data.item.pName}>
-                <Text>{ data.item.pName}</Text>
-                <Text>{ data.item.price}</Text>
+            <View key={ data.item.pName} style={{ borderColor:'red', borderWidth:1, width:140, height:140, justifyContent:'center'}}>
+                <Text style={{ width:70, height:70, borderWidth:1}}>사진</Text>
+                <View style={{ borderWidth:1}}>
+                    <Text>{ data.item.pName}</Text>
+                    <Text>{ data.item.price}</Text>
+                </View>
             </View>
         )
     };
 
     return (
-        <View>
+        <View style={{ borderWidth:1, paddingVertical:20}}>
             <FlatList 
                data={ productLists}
                renderItem={ renderItems} 
