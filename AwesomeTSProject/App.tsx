@@ -30,6 +30,9 @@ import {
 import { Provider } from 'react-redux';
 import { store }  from '.src/Store/Config';
 import { StackNavigation } from './src/Navigations';
+// import Ionicons from 'react-native-vector-icons/Ionicons';
+
+// Ionicons.loadFont().then();
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
