@@ -7,7 +7,7 @@ interface CommonHeaderProps {
 
 const CommonHeader = ( props: CommonHeaderProps) => {
     return (
-        <View style={{ flexDirection:'row', alignItems:'center'}}>
+        <View style={{ flexDirection:'row', alignItems:'center', }}>
             <Appbar.BackAction onPress={() => {}} />
             <Appbar.Content title={ props.MenuName} />
             {/* <Appbar.Action icon="magnify" onPress={() => {}} /> */}
