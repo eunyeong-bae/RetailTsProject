@@ -44,12 +44,14 @@ const Franchise = () => { // props: FranchiseProps
             <View style={{ width:'100%', height:40}}>
                 <Text style={{ fontSize:20, fontWeight:'bold', paddingHorizontal:10, paddingVertical:10}}>인기상품</Text>
             </View>
+            <Divider />
 
-            <View style={{ borderWidth:1,}}>
-                <View style={{ width:'100%', borderWidth:1, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+            <View>
+                <View style={{ width:'100%', flexDirection:'row', justifyContent:'space-between', alignItems:'center', marginVertical:5, paddingHorizontal:12}}>
                     <Text style={{fontSize:16, fontWeight:'600'}}>총 25개</Text>
                     <Button mode="contained-tonal" onPress={() => console.log('Pressed!')}>정렬</Button>
                 </View>
+                <Divider/>
                 <CommonFlatList />
             </View>
 
