@@ -2,10 +2,21 @@ import { View, Text, StyleSheet } from 'react-native';
 import { IconButton, MD3Colors, Button, Divider,Avatar } from 'react-native-paper';
 import CommonHeader from '../../Components/Header/CommonHeader';
 import CommonFlatList from '../../Components/ProductList/CommonFlatList';
+import CommonPopOver from '../../Components/CommonPopOver';
 
 interface FranchiseProps {
     SelectedStore: any,
 }
+
+const sortMenu = {
+    'currentStatus' : '정렬',
+    'sortMenuList' : [
+        {name : '신규 상품순', value: '1'},
+        {name : '금액 높은순', value: '2'},
+        {name : '금액 낮은순', value: '3'},
+        {name : '할인율 순', value: '4'}
+    ],
+};
 
 const Franchise = () => { // props: FranchiseProps
     return (
@@ -50,7 +61,7 @@ const Franchise = () => { // props: FranchiseProps
             <View style={{ flex:1}}>
                 <View style={ componentStyle.cvsProductInfoTop}>
                     <Text style={{fontSize:16, fontWeight:'600'}}>총 25개</Text>
-                    <Button mode="contained-tonal" onPress={() => console.log('Pressed!')}>정렬</Button>
+                    <CommonPopOver sortMenu={ sortMenu} />
                 </View>
                 <Divider/>
                 <CommonFlatList />
