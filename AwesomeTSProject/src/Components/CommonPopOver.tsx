@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native'; 
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'; 
 import { Button} from 'react-native-paper';
 import Popover, { PopoverMode } from 'react-native-popover-view'; 
 import CommonUtil from '../Utils/CommonUtil';
@@ -10,10 +10,12 @@ interface CommonPopOverProps {
 
 const CommonPopOver = ( props: CommonPopOverProps) => {
     const [ showPopover, setShowPopover] = useState( false);
+    const [ sortType, setSortType] = useState( '');
     const [ currentMenu, setCurrentMenu] = useState( props.sortMenu['currentStatus']);
     
     const onClickSortMenu = () => {
-
+        // setSortType('');//popOverType
+        setShowPopover( true);
     }
 
     const renderPopOverTitle = () => {
@@ -24,9 +26,22 @@ const CommonPopOver = ( props: CommonPopOverProps) => {
         )
     };
 
-    const renderPopoverItem = () => {
-        return(
-            <View></View>
+    const renderPopoverItem = ( sortItem: any) => {
+        return (
+            <TouchableOpacity key={ sortItem.value} onPress={ onClickSortMenu.bind(this, sortItem.value)}>    
+                <View style={ sortMenuStyleSheet.sortMainItem}>
+                    <Text>{sortItem.name}</Text>
+                    {/* {   selectMenu === docSortMenu ?  
+                         ( sortItem.value === sortMenuState.selectedValue.fileTypes)
+                        :
+                         ( sortItem.value === sortMenuState.selectedValue.sortItem)
+                        &&
+                        <View style={{ width:20, height:20, borderWidth:1, borderColor:'yellow'}}>
+                            <SvgIcon name="CheckIcon" height={20} width={20} style={{ alignItems: 'flex-end'}}/>
+                        </View>
+                    } */}
+                </View>
+            </TouchableOpacity>
         )
     };
 
@@ -45,7 +60,7 @@ const CommonPopOver = ( props: CommonPopOverProps) => {
                             { props.sortMenu['sortMenuList'].length > 0 &&
                                 <>
                                     { props.sortMenu['sortMenuList'].map(( menu : any) => {
-                                        // return( renderPopoverItem( menu))
+                                            return( renderPopoverItem( menu))
                                         }) 
                                     }
                                 </>
