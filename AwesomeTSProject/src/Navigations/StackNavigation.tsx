@@ -16,19 +16,44 @@ export function StackNavigation( props: any) {
             <Stack.Screen
                 name="Franchise"
                 component={ Franchise}
-                options={{ headerShown: false}}
+                // options={{ headerShown: false}}
+                options={( props:any) => ({
+                    headerRight: () => (
+                        <TouchableOpacity style={{ paddingHorizontal:10, marginRight:5 }} onPress = {() => props.navigation.navigate ("Home", {})}>
+                            <Text style={{ fontSize:15, fontWeight:'500'}}>Home</Text>
+                        </TouchableOpacity>
+                    ),
+                    headerLeft: () => (
+                        <TouchableOpacity style={{ paddingHorizontal:10, marginLeft:5}} onPress = {() => props.navigation.goBack()}>
+                            <Text style={{ fontSize:15, fontWeight:'500'}}>Back</Text>
+                        </TouchableOpacity>
+                    ),
+                    headerTitleStyle: {
+                        fontSize:20,
+                        fontWeight:'bold'
+                    },
+                })}
             />
             <Stack.Screen
                 name="OnePlusMenu"
                 component={ OneFlusMenu}
-                options={{ headerShown: false}}
-                // options={( props:any) => ({
-                //     headerRight: () => (
-                //         <TouchableOpacity style={{ paddingHorizontal:10}} onPress = {() => props.navigation.navigate ("Home", {})}>
-                //             <Text style={{ fontSize:17, fontWeight:'600'}}>Home</Text>
-                //         </TouchableOpacity>
-                //     )
-                // })}
+                // options={{ headerShown: false}}
+                options={( props:any) => ({
+                    headerRight: () => (
+                        <TouchableOpacity style={{ paddingHorizontal:10, marginRight:5 }} onPress = {() => props.navigation.navigate ("Home", {})}>
+                            <Text style={{ fontSize:15, fontWeight:'500'}}>Home</Text>
+                        </TouchableOpacity>
+                    ),
+                    headerLeft: () => (
+                        <TouchableOpacity style={{ paddingHorizontal:10, marginLeft:5}} onPress = {() => props.navigation.goBack()}>
+                            <Text style={{ fontSize:15, fontWeight:'500'}}>Back</Text>
+                        </TouchableOpacity>
+                    ),
+                    headerTitleStyle: {
+                        fontSize:20,
+                        fontWeight:'bold'
+                    },
+                })}
             />
         </Stack.Navigator>
     )

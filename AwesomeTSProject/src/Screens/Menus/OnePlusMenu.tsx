@@ -36,10 +36,10 @@ const OnePlusMenu = ( props: any) => {
     };
 
     return (
-        <SafeAreaView style={{ width:width, height:height}}>
+        // <SafeAreaView style={{ width:width, height:height}}>
             <View style={{ flex:1, backgroundColor:'#fff'}}>
-                <CommonHeader MenuName={ selectedMenuNM} navigation={ navigation} />
-                <Divider/>
+                {/* <CommonHeader MenuName={ selectedMenuNM} navigation={ navigation} /> */}
+                {/* <Divider/> */}
 
                 <View style={{ flexDirection:'row', justifyContent:'space-around', marginVertical:10}}>
                     { menuList.length > 0 &&
@@ -62,7 +62,7 @@ const OnePlusMenu = ( props: any) => {
                 </View>
 
             </View>
-        </SafeAreaView>
+        // </SafeAreaView>
     )
 };
 
