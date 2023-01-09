@@ -25,14 +25,15 @@ const Franchise = ( props: any) => { // props: FranchiseProps
     const { navigation} = props;
 
     const onClickCategory = ( category: any) => {
+        //무조건 oneplusmenu.tsx 로 화면이동되도록 
         navigation.navigate( category);
     };
     
     return (
         <SafeAreaView style={{ width:width, height:height}}>
             <View style={{ flex:1, backgroundColor:'#fff'}}>
-                <CommonHeader MenuName="CU" navigation={ navigation} />
-                <Divider/>
+                {/* <CommonHeader MenuName="CU" navigation={ navigation} />
+                <Divider/> */}
 
                 <View style={ componentStyle.cvsInfoContainer}>
                     <View style={ componentStyle.cvsInfoContents}>
@@ -50,6 +51,7 @@ const Franchise = ( props: any) => { // props: FranchiseProps
                 <Divider/>
 
                 <View style={{ flexDirection:'row', justifyContent:'space-around', marginVertical:10}}>
+                    {/** 각 메뉴가 어떤 값인지, context api 변수에 업뎃시켜야할 듯 */}
                     <Button mode="contained-tonal" onPress={ onClickCategory.bind( this, 'OnePlusMenu')}>1+1</Button>
                     <Button mode="contained-tonal" onPress={ onClickCategory.bind( this, 'TwoPlusMenu')}>2+1</Button>
                     <Button mode="contained-tonal" onPress={ onClickCategory.bind( this, 'NewMenu')}>신상</Button>
@@ -58,19 +60,10 @@ const Franchise = ( props: any) => { // props: FranchiseProps
                 </View>
                 <Divider/>
 
-                <View style={{ width:'100%', height:40}}>
-                    <Text style={{ fontSize:20, fontWeight:'bold', paddingHorizontal:10, paddingVertical:10}}>인기상품</Text>
-                </View>
-                <Divider />
-                {/* { props.SelectedStore && 
-                    <View>
-                        <Text>인기상품</Text>
-                    </View>
-                } */}
-
                 <View style={{ flex:1}}>
+                    <Text style={{ fontSize:20, fontWeight:'bold', paddingHorizontal:10, paddingTop:10}}>인기상품</Text>
                     <View style={ componentStyle.cvsProductInfoTop}>
-                        <Text style={{fontSize:16, fontWeight:'600'}}>총 25개</Text>
+                        <Text style={{fontSize:15, fontWeight:'600'}}>총 25개</Text>
                         <CommonPopOver sortMenu={ sortMenu} />
                     </View>
                     <Divider/>
