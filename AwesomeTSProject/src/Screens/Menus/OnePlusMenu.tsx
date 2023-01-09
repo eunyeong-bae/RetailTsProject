@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, SafeAreaView } from 'react-native';
 import { IconButton, MD3Colors, Button, Divider,Avatar } from 'react-native-paper';
 import CommonHeader from '../../Components/Header/CommonHeader';
 import CommonFlatList from '../../Components/ProductList/CommonFlatList';
@@ -23,7 +23,11 @@ const sortMenu = {
     ],
 };
 
-const OnePlusMenu = () => {
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
+
+const OnePlusMenu = ( props: any) => {
+    const { navigation} = props;
 
     const onClickCategory = ( category: any) => {
         return (
@@ -32,31 +36,33 @@ const OnePlusMenu = () => {
     };
 
     return (
-        <View style={{ flex:1, backgroundColor:'#fff'}}>
-            <CommonHeader MenuName={ selectedMenuNM} />
-            <Divider/>
+        <SafeAreaView style={{ width:width, height:height}}>
+            <View style={{ flex:1, backgroundColor:'#fff'}}>
+                <CommonHeader MenuName={ selectedMenuNM} navigation={ navigation} />
+                <Divider/>
 
-            <View style={{ flexDirection:'row', justifyContent:'space-around', marginVertical:10}}>
-                { menuList.length > 0 &&
-                    menuList.map(( menu: any) => {
-                        return (
-                            <Button key={ menu.name + menu.value} mode="contained-tonal" onPress={ onClickCategory.bind( this, menu.value)}>{ menu.name}</Button>                            
-                        )
-                    })
-                }
-            </View>
-            <Divider/>
-
-            <View style={{ flex:1}}>
-                <View style={ componentStyle.cvsProductInfoTop}>
-                    <Text style={{fontSize:16, fontWeight:'600'}}>총 25개</Text>
-                    <CommonPopOver sortMenu={ sortMenu} />
+                <View style={{ flexDirection:'row', justifyContent:'space-around', marginVertical:10}}>
+                    { menuList.length > 0 &&
+                        menuList.map(( menu: any) => {
+                            return (
+                                <Button key={ menu.name + menu.value} mode="contained-tonal" onPress={ onClickCategory.bind( this, menu.value)}>{ menu.name}</Button>                            
+                            )
+                        })
+                    }
                 </View>
                 <Divider/>
-                <CommonFlatList />
-            </View>
 
-        </View>
+                <View style={{ flex:1}}>
+                    <View style={ componentStyle.cvsProductInfoTop}>
+                        <Text style={{fontSize:16, fontWeight:'600'}}>총 25개</Text>
+                        <CommonPopOver sortMenu={ sortMenu} />
+                    </View>
+                    <Divider/>
+                    <CommonFlatList />
+                </View>
+
+            </View>
+        </SafeAreaView>
     )
 };
 
