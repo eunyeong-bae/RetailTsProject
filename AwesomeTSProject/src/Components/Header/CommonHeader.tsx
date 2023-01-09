@@ -10,7 +10,9 @@ const CommonHeader = ( props: CommonHeaderProps) => {
         <View style={{ flexDirection:'row', alignItems:'center', }}>
             <Appbar.BackAction onPress={() => {}} />
             <Appbar.Content title={ props.MenuName} />
-            {/* <Appbar.Action icon="magnify" onPress={() => {}} /> */}
+            { props.MenuName !== 'CU' &&
+                <Appbar.Action icon="magnify" onPress={() => {}} />
+            }
         </View>
     )
 };

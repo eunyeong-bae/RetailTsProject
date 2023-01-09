@@ -4,10 +4,15 @@ import CommonHeader from '../../Components/Header/CommonHeader';
 import CommonFlatList from '../../Components/ProductList/CommonFlatList';
 import CommonPopOver from '../../Components/CommonPopOver';
 
-interface FranchiseProps {
-    SelectedStore: any,
-}
-
+const selectedMenuNM = 'OnePlusMenu';
+const menuList = [
+    { name: '1+1 음료', value: 'drink'},
+    { name: '1+1 과자', value: 'snack'},
+    { name: '1+1 도시락', value: 'bento'},
+    { name: '1+1 담배', value: 'cigarret'},
+    { name: '1+1 과일', value: 'fruit'},
+    { name: '1+1 아이스크림', value: 'iceCream'},
+];
 const sortMenu = {
     'currentStatus' : '정렬',
     'sortMenuList' : [
@@ -18,51 +23,29 @@ const sortMenu = {
     ],
 };
 
-const Franchise = ( props: any) => { // props: FranchiseProps
-    const { navigation} = props;
+const OnePlusMenu = () => {
 
     const onClickCategory = ( category: any) => {
-        navigation.navigate( category);
+        return (
+            <View></View>
+        )
     };
-    
+
     return (
         <View style={{ flex:1, backgroundColor:'#fff'}}>
-            <CommonHeader MenuName="CU" />
-            <Divider/>
-
-            <View style={ componentStyle.cvsInfoContainer}>
-                <View style={ componentStyle.cvsInfoContents}>
-                    <Text>상봉타워팰리스점</Text>
-                    <Text>위치버튼</Text>
-                    {/* <IconButton
-                        icon="camera"
-                        iconColor={ MD3Colors.error50}
-                        size={ 20}
-                        onPress={() => console.log('Pressed')}
-                    /> */}
-                </View>
-                <Text style={{ width:'100%', paddingLeft:40}}>운영시간: 09:00 ~ 24:00</Text>
-            </View>
+            <CommonHeader MenuName={ selectedMenuNM} />
             <Divider/>
 
             <View style={{ flexDirection:'row', justifyContent:'space-around', marginVertical:10}}>
-                <Button mode="contained-tonal" onPress={ onClickCategory.bind( this, 'OnePlusMenu')}>1+1</Button>
-                <Button mode="contained-tonal" onPress={ onClickCategory.bind( this, 'TwoPlusMenu')}>2+1</Button>
-                <Button mode="contained-tonal" onPress={ onClickCategory.bind( this, 'NewMenu')}>신상</Button>
-                <Button mode="contained-tonal" onPress={ onClickCategory.bind( this, 'DiscountMenu')}>할인</Button>
-                {/* <Avatar.Text size={ 24} style={{ width:40, height:30}} label="1+1" /> */}
+                { menuList.length > 0 &&
+                    menuList.map(( menu: any) => {
+                        return (
+                            <Button key={ menu.name + menu.value} mode="contained-tonal" onPress={ onClickCategory.bind( this, menu.value)}>{ menu.name}</Button>                            
+                        )
+                    })
+                }
             </View>
             <Divider/>
-
-            <View style={{ width:'100%', height:40}}>
-                <Text style={{ fontSize:20, fontWeight:'bold', paddingHorizontal:10, paddingVertical:10}}>인기상품</Text>
-            </View>
-            <Divider />
-            {/* { props.SelectedStore && 
-                <View>
-                    <Text>인기상품</Text>
-                </View>
-            } */}
 
             <View style={{ flex:1}}>
                 <View style={ componentStyle.cvsProductInfoTop}>
@@ -77,7 +60,7 @@ const Franchise = ( props: any) => { // props: FranchiseProps
     )
 };
 
-export default Franchise;
+export default OnePlusMenu;
 
 const componentStyle = StyleSheet.create({
     cvsInfoContainer: {
