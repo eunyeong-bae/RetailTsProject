@@ -18,6 +18,8 @@ const sortMenu = {
     ],
 };
 
+const franchiseMenu = ['1+1','2+1','신상','할인'];
+
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
@@ -25,7 +27,7 @@ const Franchise = ( props: any) => { // props: FranchiseProps
     const { navigation} = props;
 
     const onClickCategory = ( category: any) => {
-        //무조건 oneplusmenu.tsx 로 화면이동되도록 
+        //무조건 SubMenu.tsx 로 화면이동되도록 
         navigation.navigate( category);
     };
     
@@ -37,25 +39,28 @@ const Franchise = ( props: any) => { // props: FranchiseProps
 
                 <View style={ componentStyle.cvsInfoContainer}>
                     <View style={ componentStyle.cvsInfoContents}>
-                        <Text>상봉타워팰리스점</Text>
-                        <Text>위치버튼</Text>
-                        {/* <IconButton
-                            icon="camera"
+                        <Text style={{ fontWeight:'600', fontSize:16, marginRight:5}}>상봉타워팰리스점</Text>
+                        <IconButton
+                            icon="crosshairs-gps"
                             iconColor={ MD3Colors.error50}
-                            size={ 20}
+                            size={ 15}
                             onPress={() => console.log('Pressed')}
-                        /> */}
+                        />
                     </View>
-                    <Text style={{ width:'100%', paddingLeft:40}}>운영시간: 09:00 ~ 24:00</Text>
+                    <Text style={{ width:'100%', paddingLeft:35, paddingBottom:10, fontSize:15,fontWeight:'500'}}>운영시간: 09:00 ~ 24:00</Text>
                 </View>
                 <Divider/>
 
                 <View style={{ flexDirection:'row', justifyContent:'space-around', marginVertical:10}}>
-                    {/** 각 메뉴가 어떤 값인지, context api 변수에 업뎃시켜야할 듯 */}
-                    <Button mode="contained-tonal" onPress={ onClickCategory.bind( this, 'OnePlusMenu')}>1+1</Button>
-                    <Button mode="contained-tonal" onPress={ onClickCategory.bind( this, 'TwoPlusMenu')}>2+1</Button>
-                    <Button mode="contained-tonal" onPress={ onClickCategory.bind( this, 'NewMenu')}>신상</Button>
-                    <Button mode="contained-tonal" onPress={ onClickCategory.bind( this, 'DiscountMenu')}>할인</Button>
+                    {/** 각 메뉴가 어떤 값인지, context api 변수에 업뎃시켜야할 듯
+                     * 지금 선택된 메뉴가 어떤건지
+                     * EX) 1+1 -> oneplusmenu 
+                     */}
+                    { franchiseMenu.map(( menu: any) => {
+                        return (
+                            <Button mode="contained-tonal" onPress={ onClickCategory.bind( this, 'SubMenu')}>{ menu}</Button>
+                        )
+                    })}
                     {/* <Avatar.Text size={ 24} style={{ width:40, height:30}} label="1+1" /> */}
                 </View>
                 <Divider/>
@@ -80,10 +85,8 @@ export default Franchise;
 const componentStyle = StyleSheet.create({
     cvsInfoContainer: {
         width:'80%',
-        height:80, 
         justifyContent:'center', 
         alignItems:'center',
-        margin:5, 
         marginHorizontal:40, 
         marginVertical:15,
         borderWidth:1, 
@@ -92,9 +95,9 @@ const componentStyle = StyleSheet.create({
     },
     cvsInfoContents: {
         width:'100%', 
-        flexDirection:'row', 
-        justifyContent:'space-around', 
-        marginBottom:10
+        flexDirection:'row',
+        paddingHorizontal:35,
+        alignItems:'center',
     },
     cvsProductInfoTop: {
         width:'100%', 
