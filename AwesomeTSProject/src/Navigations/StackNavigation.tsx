@@ -2,7 +2,7 @@ import { TouchableOpacity, Text } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Home } from '../Screens/Home';
 import Franchise from '../Screens/Menus/Franchise';
-import OneFlusMenu from '../Screens/Menus/OnePlusMenu';
+import SubMenu from '../Screens/Menus/SubMenu';
 
 const Stack = createStackNavigator();
 export function StackNavigation( props: any) {
@@ -35,8 +35,8 @@ export function StackNavigation( props: any) {
                 })}
             />
             <Stack.Screen
-                name="OnePlusMenu"
-                component={ OneFlusMenu}
+                name="SubMenu"
+                component={ SubMenu}
                 // options={{ headerShown: false}}
                 options={( props:any) => ({
                     headerRight: () => (

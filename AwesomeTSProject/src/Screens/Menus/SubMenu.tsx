@@ -26,7 +26,7 @@ const sortMenu = {
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
-const OnePlusMenu = ( props: any) => {
+const SubMenu = ( props: any) => {
     const { navigation} = props;
 
     const onClickCategory = ( category: any) => {
@@ -41,11 +41,11 @@ const OnePlusMenu = ( props: any) => {
                 {/* <CommonHeader MenuName={ selectedMenuNM} navigation={ navigation} /> */}
                 {/* <Divider/> */}
 
-                <View style={{ flexDirection:'row', justifyContent:'space-around', marginVertical:10}}>
+                <View style={{ flexDirection:'row', justifyContent:'space-around', marginVertical:10, width:'100%', height:100}}>
                     { menuList.length > 0 &&
                         menuList.map(( menu: any) => {
                             return (
-                                <Button key={ menu.name + menu.value} mode="contained-tonal" onPress={ onClickCategory.bind( this, menu.value)}>{ menu.name}</Button>                            
+                                <Button key={ menu.name + menu.value} mode="contained-tonal" style={{ borderWidth:1}} onPress={ onClickCategory.bind( this, menu.value)}>{ menu.name}</Button>                            
                             )
                         })
                     }
@@ -66,7 +66,7 @@ const OnePlusMenu = ( props: any) => {
     )
 };
 
-export default OnePlusMenu;
+export default SubMenu;
 
 const componentStyle = StyleSheet.create({
     cvsInfoContainer: {
