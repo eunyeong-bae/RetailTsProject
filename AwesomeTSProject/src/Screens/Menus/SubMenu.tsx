@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Dimensions, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, SafeAreaView, FlatList } from 'react-native';
 import { IconButton, MD3Colors, Button, Divider,Avatar } from 'react-native-paper';
 import CommonHeader from '../../Components/Header/CommonHeader';
 import CommonFlatList from '../../Components/ProductList/CommonFlatList';
@@ -41,14 +41,36 @@ const SubMenu = ( props: any) => {
                 {/* <CommonHeader MenuName={ selectedMenuNM} navigation={ navigation} /> */}
                 {/* <Divider/> */}
 
-                <View style={{ flexDirection:'row', justifyContent:'space-around', marginVertical:10, width:'100%', height:100}}>
-                    { menuList.length > 0 &&
+                <View style={{ marginVertical:10, width:'100%', }}>
+                    <FlatList 
+                        columnWrapperStyle={{justifyContent: 'space-around'}}
+                        key="_"
+                        keyExtractor={ item => "_" + item.value}
+                        data={ menuList}
+                        renderItem={ ( menu: any) => {
+                            return (
+                                <View style={{width:'50%'}}>
+                                    <Button 
+                                        key={ menu.item.name + menu.item.value} 
+                                        mode='contained-tonal'
+                                        onPress={ onClickCategory.bind( this, menu.item.value)}
+                                        style={{ borderWidth:1, margin:10}}
+                                    >
+                                        { menu.item.name}
+                                    </Button>
+                                </View>                            
+                            )
+                        }}
+                        numColumns={ 2}
+                        showsVerticalScrollIndicator={ false}
+                    />
+                    {/* { menuList.length > 0 &&
                         menuList.map(( menu: any) => {
                             return (
-                                <Button key={ menu.name + menu.value} mode="contained-tonal" style={{ borderWidth:1}} onPress={ onClickCategory.bind( this, menu.value)}>{ menu.name}</Button>                            
+                                <Button key={ menu.name + menu.value} mode="Elevated button" onPress={ onClickCategory.bind( this, menu.value)}>{ menu.name}</Button>                            
                             )
                         })
-                    }
+                    } */}
                 </View>
                 <Divider/>
 

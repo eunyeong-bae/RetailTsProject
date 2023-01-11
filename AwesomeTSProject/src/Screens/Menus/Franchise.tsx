@@ -58,7 +58,7 @@ const Franchise = ( props: any) => { // props: FranchiseProps
                      */}
                     { franchiseMenu.map(( menu: any) => {
                         return (
-                            <Button mode="contained-tonal" onPress={ onClickCategory.bind( this, 'SubMenu')}>{ menu}</Button>
+                            <Button key={ menu} mode="contained-tonal" onPress={ onClickCategory.bind( this, 'SubMenu')}>{ menu}</Button>
                         )
                     })}
                     {/* <Avatar.Text size={ 24} style={{ width:40, height:30}} label="1+1" /> */}
