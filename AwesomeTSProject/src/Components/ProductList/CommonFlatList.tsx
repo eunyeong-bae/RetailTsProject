@@ -1,5 +1,6 @@
-import { View, Text, FlatList, Dimensions, StyleSheet } from 'react-native';
-import { Avatar } from 'react-native-paper';
+import { View, FlatList, Dimensions, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Avatar, Provider, Button, Dialog, Portal, } from 'react-native-paper';
+import CommonDialog from '../../Dialog/CommonDialog';
 
 const width = Dimensions.get('window').width;
 
@@ -18,22 +19,27 @@ const productLists = [
 ]
 
 const CommonFlatList = () => {
+
     const renderItems = ( data: any) => {
         return (
-            <View key={ data.item.pName} style={ CommonFlatListStyle.productContainer}>
-                <Text style={ CommonFlatListStyle.productTitleArea}>사진</Text>
-                <View style={ CommonFlatListStyle.productInfoArea}>
-                    <View style={{ borderWidth:1, padding:5}}>
-                        <Text>{ data.item.pName}</Text>
-                        <Text>{ data.item.price}</Text>
-                    </View>
-                    <Avatar.Text size={ 30} label="+" />
+            <TouchableOpacity onPress={ () => { }}>
+                <View key={ data.item.pName} style={ CommonFlatListStyle.productContainer}>
+                        <Text style={ CommonFlatListStyle.productTitleArea}>사진</Text>
+                        <View style={ CommonFlatListStyle.productInfoArea}>
+                            <View style={{ borderWidth:1, padding:5}}>
+                                <Text>{ data.item.pName}</Text>
+                                <Text>{ data.item.price}</Text>
+                            </View>
+                            <Avatar.Text size={ 30} label="+" />
+                        </View>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     };
 
     return (
+
+    <Provider>
         <View style={{ padding:20, marginBottom:50}}>
             <FlatList 
                 key="_"
@@ -46,6 +52,7 @@ const CommonFlatList = () => {
                 //onEndReachedThreshold
             />
         </View>
+    </Provider>
     )
 };
 
