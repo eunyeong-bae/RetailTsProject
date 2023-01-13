@@ -28,6 +28,7 @@ declare module 'pdfjs-dist/lib/display/display_utils';
 
 type SelectedTargetState = { // 단일 선택
     selectedTarget : any,
+    selectedTargetMenuInfo: null,
     index : number
 }
 

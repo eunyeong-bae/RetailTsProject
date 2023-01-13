@@ -3,6 +3,8 @@ import { IconButton, MD3Colors, Button, Divider,Avatar } from 'react-native-pape
 import CommonHeader from '../../Components/Header/CommonHeader';
 import CommonFlatList from '../../Components/ProductList/CommonFlatList';
 import CommonPopOver from '../../Components/CommonPopOver';
+import { useContext } from 'react';
+import { CommonContext } from '../../Context/CommonContext';
 
 interface FranchiseProps {
     SelectedStore: any,
@@ -25,9 +27,11 @@ const height = Dimensions.get('window').height;
 
 const Franchise = ( props: any) => { // props: FranchiseProps
     const { navigation} = props;
+    const { setSelectedTarget} = useContext( CommonContext);
 
-    const onClickCategory = ( category: any) => {
+    const onClickCategory = ( category: any, menuNM: any) => {
         //무조건 SubMenu.tsx 로 화면이동되도록 
+        setSelectedTarget( menuNM, null);
         navigation.navigate( category);
     };
     
@@ -58,7 +62,7 @@ const Franchise = ( props: any) => { // props: FranchiseProps
                      */}
                     { franchiseMenu.map(( menu: any) => {
                         return (
-                            <Button key={ menu} mode="contained-tonal" onPress={ onClickCategory.bind( this, 'SubMenu')}>{ menu}</Button>
+                            <Button key={ menu} mode="contained-tonal" onPress={ onClickCategory.bind( this, 'SubMenu', menu)}>{ menu}</Button>
                         )
                     })}
                     {/* <Avatar.Text size={ 24} style={{ width:40, height:30}} label="1+1" /> */}

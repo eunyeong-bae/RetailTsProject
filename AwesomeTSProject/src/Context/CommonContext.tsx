@@ -2,7 +2,8 @@ import { createContext, useCallback, useState} from 'react';
 
 const CommonContext = createContext<CommonContextType>({
     selectedTargetState : {
-        selectedTarget: null,
+        selectedTarget: '',
+        selectedTargetMenuInfo: null,
         index: -1
     },
     sortMenuState: {
@@ -11,17 +12,17 @@ const CommonContext = createContext<CommonContextType>({
         sortMenuInfo : null
     },
 
-    setSelectedTarget : ( selectedTarget: null, index : number) : void => {},
+    setSelectedTarget : ( selectedTarget: string, selectedTargetMenuInfo: null, index : number) : void => {},
     setSortMenu: ( currentPageName: string, selectedValue: any, sortMenuInfo: any) : void => {},
 
 });
 
 const CommonProvider = ({ children} : CommonProviderProps) : JSX.Element => {
-    const [ selectedTargetState, setSelectedTargetState] = useState<SelectedTargetState>({ selectedTarget: null, index : -1});
+    const [ selectedTargetState, setSelectedTargetState] = useState<SelectedTargetState>({ selectedTarget: '', selectedTargetMenuInfo: null,index : -1});
     const [ sortMenuState, setSortMenuState] = useState<SortMenuState>({ currentPageName: '', selectedValue : null, sortMenuInfo : null});
     
-    const setSelectedTarget = useCallback(( selectedTarget: any, index: number) : void => {
-        setSelectedTargetState({ ...setSelectedTargetState, selectedTarget, index});
+    const setSelectedTarget = useCallback(( selectedTarget: string, selectedTargetMenuInfo: any, index: number) : void => {
+        setSelectedTargetState({ ...setSelectedTargetState, selectedTarget, selectedTargetMenuInfo, index});
     }, [ selectedTargetState, setSelectedTargetState]);
 
     const setSortMenu = useCallback(( currentPageName: string, selectedValue: any, sortMenuInfo: any) : void => {

@@ -3,15 +3,17 @@ import { IconButton, MD3Colors, Button, Divider,Avatar } from 'react-native-pape
 import CommonHeader from '../../Components/Header/CommonHeader';
 import CommonFlatList from '../../Components/ProductList/CommonFlatList';
 import CommonPopOver from '../../Components/CommonPopOver';
+import { useContext } from 'react';
+import { CommonContext } from '../../Context/CommonContext';
 
-const selectedMenuNM = 'OnePlusMenu';
+// const selectedMenuNM = 'OnePlusMenu';
 const menuList = [
-    { name: '1+1 음료', value: 'drink'},
-    { name: '1+1 과자', value: 'snack'},
-    { name: '1+1 도시락', value: 'bento'},
-    { name: '1+1 담배', value: 'cigarret'},
-    { name: '1+1 과일', value: 'fruit'},
-    { name: '1+1 아이스크림', value: 'iceCream'},
+    { name: '음료', value: 'drink'},
+    { name: '과자', value: 'snack'},
+    { name: '도시락', value: 'bento'},
+    { name: '담배', value: 'cigarret'},
+    { name: '과일', value: 'fruit'},
+    { name: '아이스크림', value: 'iceCream'},
 ];
 const sortMenu = {
     'currentStatus' : '정렬',
@@ -23,11 +25,12 @@ const sortMenu = {
     ],
 };
 
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
+// const width = Dimensions.get('window').width;
+// const height = Dimensions.get('window').height;
 
 const SubMenu = ( props: any) => {
     const { navigation} = props;
+    const { selectedTargetState} = useContext( CommonContext);
 
     const onClickCategory = ( category: any) => {
         return (
@@ -56,7 +59,7 @@ const SubMenu = ( props: any) => {
                                         onPress={ onClickCategory.bind( this, menu.item.value)}
                                         style={{ borderWidth:1, margin:10}}
                                     >
-                                        { menu.item.name}
+                                        { selectedTargetState.selectedTarget + ' ' + menu.item.name}
                                     </Button>
                                 </View>                            
                             )
