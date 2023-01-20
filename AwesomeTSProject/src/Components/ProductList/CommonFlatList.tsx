@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import { View, FlatList, Dimensions, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Avatar, Provider, Button, Dialog, Portal, } from 'react-native-paper';
+import { CommonContext } from '../../Context/CommonContext';
 import CommonDialog from '../../Dialog/CommonDialog';
 
 const width = Dimensions.get('window').width;
@@ -19,10 +21,11 @@ const productLists = [
 ]
 
 const CommonFlatList = () => {
+    const { centerDialogState, setCenterDialog} = useContext(CommonContext)
 
     const renderItems = ( data: any) => {
         return (
-            <TouchableOpacity onPress={ () => { }}>
+            <TouchableOpacity onPress={ () => setCenterDialog( !centerDialogState.isAction)}>
                 <View key={ data.item.pName} style={ CommonFlatListStyle.productContainer}>
                         <Text style={ CommonFlatListStyle.productTitleArea}>사진</Text>
                         <View style={ CommonFlatListStyle.productInfoArea}>

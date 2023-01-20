@@ -4,6 +4,7 @@ import { StackNavigation } from './src/Navigations';
 import { CommonProvider } from "./src/Context/CommonContext";
 // import CommonState from "./src/component/CommonState";
 // import { ModalPortal } from 'react-native-jsmodal';
+import CommonDialog from './src/Dialog/CommonDialog';
 
 const AppRoute = () => {
     return (
@@ -12,6 +13,7 @@ const AppRoute = () => {
                 <StackNavigation />
                 {/* <CommonState/> */}
                 {/* <ModalPortal /> */}
+                <CommonDialog />
             </NavigationContainer>
         </CommonProvider>
     );

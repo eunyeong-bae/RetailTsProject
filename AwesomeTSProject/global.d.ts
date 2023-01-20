@@ -38,11 +38,19 @@ type SortMenuState = {
     sortMenuInfo : any
 }
 
+type CenterDialogState = {
+    dialogName: string,
+    dialogItem: any,
+    isAction: boolean
+}
+
 type CommonContextType = {
     selectedTargetState : SelectedTargetState,
     setSelectedTarget : any,
     sortMenuState : SortMenuState,
     setSortMenu : any,
+    centerDialogState: CenterDialogState,
+    setCenterDialog: any,
 }
 
 interface CommonProviderProps {
